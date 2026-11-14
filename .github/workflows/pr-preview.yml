@@ -46,4 +46,8 @@ jobs:
           umbrella-dir: pr-preview
           action: auto
           comment: true
-          wait-for-pages-deployment: true
+          # Leave this false until Pages is enabled. The action's wait step
+          # errors (and skips the pull request comment) when the repository
+          # has no Pages site. After Settings → Pages deploys the gh-pages
+          # branch, this can be set to true so the comment waits for the URL.
+          wait-for-pages-deployment: false
