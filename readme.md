@@ -8,22 +8,23 @@ The manual is at [https://larryjoelane.github.io/responder/](https://larryjoelan
 
 Copy the `css` folder into your site.
 
-Everything, default theme:
+Everything, green theme:
 
 ```html
 <link rel="stylesheet" href="css/responder.css">
 ```
 
-Dark theme instead:
+Light or dark instead:
 
 ```html
+<link rel="stylesheet" href="css/responder-light.css">
 <link rel="stylesheet" href="css/responder-dark.css">
 ```
 
 Only what a page needs. Link the theme first:
 
 ```html
-<link rel="stylesheet" href="css/themes/default.css">
+<link rel="stylesheet" href="css/themes/green.css">
 <link rel="stylesheet" href="css/base.css">
 <link rel="stylesheet" href="css/grid.css">
 <link rel="stylesheet" href="css/layout.css">
@@ -37,27 +38,32 @@ Only what a page needs. Link the theme first:
 </div>
 ```
 
-`responder.css` and `responder-dark.css` are `@import` manifests. One link tag loads the theme and every component file. The browser requests each file, so there is nothing to compile and nothing that can drift from the modules. The cost is those extra requests, which is small on HTTP/2 or HTTP/3. Concatenating them into one physical file would need a build, or a second copy maintained by hand.
+`responder.css`, `responder-light.css`, and `responder-dark.css` are `@import` manifests. One link tag loads the theme and every component file. The browser requests each file, so there is nothing to compile and nothing that can drift from the modules. The cost is those extra requests, which is small on HTTP/2 or HTTP/3. Concatenating them into one physical file would need a build, or a second copy maintained by hand.
 
 The old path `responder.css` at the repository root still works. It imports `css/responder.css`.
 
 ## Theme
 
-Edit `css/themes/default.css`. Every component reads those custom properties. Swap the theme by swapping that file, or by linking `responder-dark.css` instead of `responder.css`.
+The default theme is `css/themes/green.css`: saturated green `#00c853` for the page, deep green `#053422` for buttons and links, white cards. `css/themes/light.css` is neutral gray. `css/themes/dark.css` is neutral charcoal. Each file defines the same custom properties. Every component reads those properties.
 
-`css/themes/dark.css` defines the same property names. Loaded on its own, it is the theme. Loaded after the default file, it applies while a radio with the id `theme-dark` is checked:
+Swap a whole site by linking a different bundle. A no-JS switcher links the green bundle plus the two alternate files. Light applies while `#theme-light` is checked. Dark applies while `#theme-dark` is checked.
 
 ```html
 <link rel="stylesheet" href="css/responder.css">
+<link rel="stylesheet" href="css/themes/light.css">
 <link rel="stylesheet" href="css/themes/dark.css">
 
-<input type="radio" name="theme" id="theme-default" checked>
-<label for="theme-default">Default</label>
+<input type="radio" name="theme" id="theme-green" checked>
+<label for="theme-green">Green</label>
+<input type="radio" name="theme" id="theme-light">
+<label for="theme-light">Light</label>
 <input type="radio" name="theme" id="theme-dark">
 <label for="theme-dark">Dark</label>
 ```
 
 The manual's header uses that pattern. Nothing is stored across reloads.
+
+Text and UI colors in all three themes meet WCAG 2.2 AA: 4.5:1 for text, 3:1 for borders, buttons, and focus rings. `scripts/check-contrast.py` checks the pairs.
 
 Breakpoint tokens in the theme file are the documented widths (480px, 768px, 992px). Media queries cannot read custom properties, so `grid.css`, `nav.css`, and `utilities.css` repeat those numbers. Change a breakpoint in the token and in those files together.
 
@@ -65,11 +71,13 @@ Breakpoint tokens in the theme file are the documented widths (480px, 768px, 992
 
 | File | Role |
 | --- | --- |
-| `css/responder.css` | Default theme and every component |
+| `css/responder.css` | Green theme and every component |
+| `css/responder-light.css` | Light theme and every component |
 | `css/responder-dark.css` | Dark theme and every component |
 | `css/responder-components.css` | Every component, no theme |
-| `css/themes/default.css` | Default custom properties |
-| `css/themes/dark.css` | Dark custom properties |
+| `css/themes/green.css` | Green custom properties (default) |
+| `css/themes/light.css` | Neutral light custom properties |
+| `css/themes/dark.css` | Neutral dark custom properties |
 | `css/base.css` | Box model, type, links, focus |
 | `css/grid.css` | `.row` and `.column-*` |
 | `css/layout.css` | Header, footer, wrap, container |

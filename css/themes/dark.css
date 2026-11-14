@@ -1,20 +1,12 @@
 /*
-  Responder dark theme.
+  Responder dark theme. Neutral charcoal, distinct from the green brand.
 
-  Defines the same custom properties as themes/default.css.
-
-  Loaded alone (or via responder-dark.css), :where(:root) applies the
-  theme. Specificity is zero, so it does not override default.css when
-  both files are linked.
-
-  Loaded with default.css, the same values also apply while an element
-  with id "theme-dark" is checked:
+  Loaded alone (or via responder-dark.css), :where(:root) applies it.
+  Loaded with the green default, it applies while #theme-dark is checked:
 
     <input type="radio" name="theme" id="theme-dark">
 
-  That is the contract the documentation theme switcher uses. The id
-  has to be exactly theme-dark, and the control has to be in the page
-  (the :has() selector looks at the document). No JavaScript.
+  The id has to be exactly theme-dark. No JavaScript.
 */
 
 @layer responder-base, responder-components, responder-utilities;
@@ -23,28 +15,31 @@
 :root:has(#theme-dark:checked) {
   color-scheme: dark;
 
-  --responder-color-bg: #101612;
-  --responder-color-surface: #1b2620;
-  --responder-color-text: #e7f4ec;
-  --responder-color-muted: #c5ddd0;
-  --responder-color-heading: #c8f6e4;
-  --responder-color-accent: #7ddec4;
-  --responder-color-accent-hover: #a7f0dc;
-  --responder-color-accent-contrast: #08211c;
-  --responder-color-header-bg: #0c1210;
-  --responder-color-header-text: #e7f4ec;
-  --responder-color-header-hover: #a7f0dc;
-  --responder-color-footer-bg: #0c1210;
-  --responder-color-footer-text: #e7f4ec;
-  --responder-color-border: #2e4036;
-  --responder-color-focus: #8fe6cf;
-  --responder-color-link: #8fe6cf;
+  --responder-color-bg: #141414;
+  --responder-color-surface: #222222;
+  --responder-color-text: #f3f3f3;
+  --responder-color-muted: #d2d2d2;
+  --responder-color-heading: #ffffff;
+  --responder-color-accent: #f2f2f2;
+  --responder-color-accent-hover: #ffffff;
+  --responder-color-accent-active: #e4e4e4;
+  --responder-color-accent-contrast: #141414;
+  --responder-color-header-bg: #0c0c0c;
+  --responder-color-header-text: #f5f5f5;
+  --responder-color-header-hover: #ffffff;
+  --responder-color-footer-bg: #0c0c0c;
+  --responder-color-footer-text: #f5f5f5;
+  --responder-color-border: #ababab;
+  --responder-color-focus: #ffffff;
+  --responder-color-link: #f3f3f3;
   --responder-color-shadow: #000000;
-  --responder-color-code-bg: #0c1210;
-  --responder-color-code-text: #e7f4ec;
-  --responder-color-warning: #f0c27a;
-  --responder-color-success: #7ddec4;
-  --responder-color-danger: #ffb3bc;
+  --responder-color-code-bg: #0c0c0c;
+  --responder-color-code-text: #f5f5f5;
+  --responder-color-warning: #ffcc70;
+  --responder-color-success: #8ee0b0;
+  --responder-color-danger: #ffb1b1;
+  --responder-color-disabled-bg: #2c2c2c;
+  --responder-color-disabled-text: #d2d2d2;
 
   --responder-font-family: Georgia, "Iowan Old Style", "Palatino Linotype", Palatino, serif;
   --responder-font-mono: ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, Consolas, monospace;
@@ -70,8 +65,8 @@
   --responder-radius-lg: 0.75rem;
   --responder-radius-pill: 999px;
 
-  --responder-shadow-sm: 0 1px 2px color-mix(in srgb, var(--responder-color-shadow) 40%, transparent);
-  --responder-shadow: 0 12px 32px color-mix(in srgb, var(--responder-color-shadow) 45%, transparent);
+  --responder-shadow-sm: 0 1px 2px color-mix(in srgb, var(--responder-color-shadow) 45%, transparent);
+  --responder-shadow: 0 12px 32px color-mix(in srgb, var(--responder-color-shadow) 50%, transparent);
 
   --responder-content-width: 72rem;
   --responder-column-gap: 1rem;

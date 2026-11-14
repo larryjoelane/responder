@@ -92,4 +92,18 @@
 
   .text-center { text-align: center; }
   .text-end { text-align: end; }
+
+  @media (forced-colors: active) {
+    .button,
+    .nav-disclosure summary,
+    .field input,
+    .field textarea,
+    .field select {
+      border: 1px solid ButtonText;
+    }
+
+    :focus-visible {
+      outline: 2px solid Highlight;
+    }
+  }
 }

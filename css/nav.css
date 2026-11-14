@@ -40,6 +40,8 @@
     a:hover,
     a:focus-visible {
       color: var(--responder-color-accent);
+      text-decoration: underline;
+      text-underline-offset: 0.2em;
     }
 
     a[aria-current="page"] {
@@ -53,6 +55,8 @@
   #header .nav-horizontal a:hover,
   #header .nav-horizontal a:focus-visible {
     color: var(--responder-color-header-hover);
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
   }
 
   .nav-disclosure {
@@ -109,8 +113,10 @@
 
     a:hover,
     a:focus-visible {
-      background: color-mix(in srgb, var(--responder-color-accent) 12%, transparent);
+      background: var(--responder-color-bg);
       color: var(--responder-color-accent);
+      text-decoration: underline;
+      text-underline-offset: 0.2em;
     }
   }
 
@@ -118,7 +124,7 @@
   #header .nav-disclosure summary {
     color: var(--responder-color-header-text);
     background: transparent;
-    border-color: color-mix(in srgb, var(--responder-color-header-text) 35%, transparent);
+    border-color: var(--responder-color-header-hover);
   }
 
   .site-header .nav-disclosure ul,
@@ -133,7 +139,9 @@
   #header .nav-disclosure a:hover,
   #header .nav-disclosure a:focus-visible {
     color: var(--responder-color-header-hover);
-    background: color-mix(in srgb, var(--responder-color-header-text) 8%, transparent);
+    background: var(--responder-color-header-bg);
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
   }
 
   .mobile-menu {
@@ -173,6 +181,8 @@
     a:hover,
     a:focus-visible {
       color: var(--responder-color-accent);
+      text-decoration: underline;
+      text-underline-offset: 0.2em;
     }
   }
 
@@ -189,6 +199,8 @@
     a:hover,
     a:focus-visible {
       color: var(--responder-color-header-hover);
+      text-decoration: underline;
+      text-underline-offset: 0.2em;
     }
   }
 

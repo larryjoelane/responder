@@ -64,6 +64,11 @@
     color: var(--responder-color-accent-hover);
   }
 
+  a:active {
+    color: var(--responder-color-accent-active);
+    text-decoration-thickness: 3px;
+  }
+
   :focus {
     outline: none;
   }
