@@ -1,0 +1,82 @@
+/*
+  Row and column layout.
+
+  A row is a flex line. Each child sets --responder-col to a percentage
+  of the row. The basis subtracts a share of --responder-column-gap so
+  a full set of columns plus the gap still equals 100%.
+
+  Class names follow the Sass source: .column-50. The 2014 stylesheet
+  used .column50 (no hyphen); those names are aliases.
+
+  Special widths, matching the old compiled CSS:
+    .column-1    1%        spacer
+    .column-8    8.333333% one twelfth
+    .column-12   12.5%     one eighth
+    .column-33   33.333333% one third
+    .column-66   66.666667% two thirds
+  Everything else from 5 to 100 is a multiple of 5.
+
+  Below --responder-bp-sm (480px) columns stack to full width.
+  Add .row-fixed on the row to keep the percentages.
+
+  Only direct children are columns. Nested elements are normal flow.
+  The old .row div rule floated every descendant div.
+*/
+
+@layer responder-base, responder-components, responder-utilities;
+
+@layer responder-components {
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    gap: var(--responder-column-gap);
+    max-width: 100%;
+  }
+
+  .row > * {
+    min-width: 0;
+    overflow-wrap: break-word;
+    flex: 0 1 calc(
+      var(--responder-col, 100) * 1% -
+      var(--responder-column-gap) * (1 - var(--responder-col, 100) / 100)
+    );
+    max-width: calc(
+      var(--responder-col, 100) * 1% -
+      var(--responder-column-gap) * (1 - var(--responder-col, 100) / 100)
+    );
+  }
+
+  .column-1, .column1 { --responder-col: 1; }
+  .column-5, .column5 { --responder-col: 5; }
+  .column-8, .column8 { --responder-col: 8.333333; }
+  .column-10, .column10 { --responder-col: 10; }
+  .column-12, .column12 { --responder-col: 12.5; }
+  .column-15, .column15 { --responder-col: 15; }
+  .column-20, .column20 { --responder-col: 20; }
+  .column-25, .column25 { --responder-col: 25; }
+  .column-30, .column30 { --responder-col: 30; }
+  .column-33, .column33 { --responder-col: 33.333333; }
+  .column-35, .column35 { --responder-col: 35; }
+  .column-40, .column40 { --responder-col: 40; }
+  .column-45, .column45 { --responder-col: 45; }
+  .column-50, .column50 { --responder-col: 50; }
+  .column-55, .column55 { --responder-col: 55; }
+  .column-60, .column60 { --responder-col: 60; }
+  .column-65, .column65 { --responder-col: 65; }
+  .column-66, .column66 { --responder-col: 66.666667; }
+  .column-70, .column70 { --responder-col: 70; }
+  .column-75, .column75 { --responder-col: 75; }
+  .column-80, .column80 { --responder-col: 80; }
+  .column-85, .column85 { --responder-col: 85; }
+  .column-90, .column90 { --responder-col: 90; }
+  .column-95, .column95 { --responder-col: 95; }
+  .column-100, .column100 { --responder-col: 100; }
+
+  /* --responder-bp-sm: 480px. Literal because media queries cannot read variables. */
+  @media (max-width: 480px) {
+    .row:not(.row-fixed) > * {
+      --responder-col: 100;
+    }
+  }
+}

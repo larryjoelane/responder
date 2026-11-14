@@ -1,0 +1,15 @@
+/*
+  Responder, green theme, one link tag.
+
+  This file is an import manifest, not a concatenated build. There is
+  no build step, so the bundle cannot drift from the component files.
+  The tradeoff: the browser requests each imported file. On HTTP/2 or
+  HTTP/3 that is cheap. On HTTP/1.1 it is several round trips.
+
+  Other bundles: responder-light.css, responder-dark.css.
+  A no-JS switcher links this file plus themes/light.css and
+  themes/dark.css, with radios whose ids are theme-light and theme-dark.
+*/
+
+@import url("themes/green.css");
+@import url("responder-components.css");
