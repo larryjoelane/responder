@@ -1,0 +1,59 @@
+/*
+  Accordion built from <details> and <summary>.
+
+  The old stylesheet styled #accordion h3 and never defined the widget.
+  Give several <details> the same name attribute to keep only one open.
+  That is native HTML, not JavaScript. Without name, several may be open.
+*/
+
+@layer responder-base, responder-components, responder-utilities;
+
+@layer responder-components {
+  .accordion {
+    background: var(--responder-color-surface);
+    border: 1px solid var(--responder-color-border);
+    border-radius: var(--responder-radius);
+    overflow: hidden;
+
+    details {
+      border-block-end: 1px solid var(--responder-color-border);
+
+      &:last-child {
+        border-block-end: 0;
+      }
+    }
+
+    summary {
+      display: flex;
+      justify-content: space-between;
+      gap: var(--responder-space-3);
+      cursor: pointer;
+      padding: var(--responder-space-3) var(--responder-space-4);
+      font-weight: var(--responder-heading-weight);
+      color: var(--responder-color-heading);
+      list-style: none;
+
+      &:hover {
+        background: color-mix(in srgb, var(--responder-color-accent) 8%, transparent);
+      }
+
+      &::-webkit-details-marker {
+        display: none;
+      }
+
+      &::after {
+        content: "+";
+        color: var(--responder-color-muted);
+        font-weight: 400;
+      }
+    }
+
+    details[open] summary::after {
+      content: "–";
+    }
+
+    .accordion-panel {
+      padding: 0 var(--responder-space-4) var(--responder-space-4);
+    }
+  }
+}

@@ -1,0 +1,95 @@
+/*
+  Visibility and small helpers.
+
+  .hide removes the element from layout and from the accessibility tree
+  (display: none). The old rule used visibility plus zero width and
+  height, which left the element focusable.
+
+  Breakpoints do not overlap. The 2014 manual's pixel ranges did not
+  match the stylesheet; these match the media queries below.
+  The separate 320px query was folded into small, because it did the
+  same work as the 480px query.
+
+    small         viewport <= 480px     --responder-bp-sm
+    medium        481px – 768px         through --responder-bp-md
+    large         769px – 992px         through --responder-bp-lg
+    extra-large   >= 993px
+
+  .small-show (and the medium, large, and extra-large partners) is
+  hidden everywhere except its band. .small-show used to set only
+  visibility: visible, which could not undo a hide.
+
+  .visually-hidden keeps the element available to assistive tech.
+  .stack is a vertical flex list with the spacing token as its gap.
+  .center-vertical centers itself in a flex parent and centers its
+  own children. Header and footer are flex parents, so the legacy
+  class still centers a footer line.
+*/
+
+@layer responder-base, responder-components, responder-utilities;
+
+@layer responder-utilities {
+  .hide {
+    display: none;
+  }
+
+  .small-show,
+  .medium-show,
+  .large-show,
+  .extra-large-show {
+    display: none;
+  }
+
+  /* --responder-bp-sm */
+  @media (max-width: 480px) {
+    .small-hide { display: none; }
+    .small-show:not(.hide) { display: revert-layer; }
+  }
+
+  @media (min-width: 481px) and (max-width: 768px) {
+    .medium-hide { display: none; }
+    .medium-show:not(.hide) { display: revert-layer; }
+  }
+
+  @media (min-width: 769px) and (max-width: 992px) {
+    .large-hide { display: none; }
+    .large-show:not(.hide) { display: revert-layer; }
+  }
+
+  @media (min-width: 993px) {
+    .extra-large-hide { display: none; }
+    .extra-large-show:not(.hide) { display: revert-layer; }
+  }
+
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .center-vertical {
+    display: flex;
+    align-items: center;
+    align-self: center;
+  }
+
+  .stack {
+    display: flex;
+    flex-direction: column;
+    gap: var(--responder-space-4);
+
+    > * {
+      margin-block: 0;
+    }
+  }
+
+  .text-center { text-align: center; }
+  .text-end { text-align: end; }
+}
