@@ -1,6 +1,6 @@
 /*
   All components, no theme. Link a theme file before this one,
-  or use responder.css / responder-dark.css, which already do.
+  or use responder.css, responder-light.css, or responder-dark.css.
 */
 
 @import url("base.css");

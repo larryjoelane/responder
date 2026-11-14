@@ -56,7 +56,7 @@
   margin: 0;
   padding: 0.15rem;
   min-inline-size: 0;
-  border: 1px solid color-mix(in srgb, var(--responder-color-header-text) 35%, transparent);
+  border: 2px solid var(--responder-color-header-hover);
   border-radius: var(--responder-radius-pill);
 }
 
@@ -69,8 +69,8 @@
 }
 
 .theme-switch input:checked + label {
-  background: var(--responder-color-accent);
-  color: var(--responder-color-accent-contrast);
+  background: var(--responder-color-header-hover);
+  color: var(--responder-color-header-bg);
 }
 
 .theme-switch input:focus-visible + label {
@@ -222,9 +222,9 @@
   line-height: 1.55;
 }
 
-.snippet .code {
-  padding-top: 0;
-  border-radius: 0 0 var(--responder-radius) var(--responder-radius);
+.code:focus-visible {
+  outline: 2px solid var(--responder-color-focus);
+  outline-offset: 2px;
 }
 
 .mini-page {

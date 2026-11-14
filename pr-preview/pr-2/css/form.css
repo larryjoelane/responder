@@ -35,8 +35,25 @@
     padding: 0.55rem 0.75rem;
     color: var(--responder-color-text);
     background: var(--responder-color-surface);
-    border: 1px solid var(--responder-color-border);
+    border: 2px solid var(--responder-color-border);
     border-radius: var(--responder-radius-sm);
+  }
+
+  .field input:not([type="checkbox"]):not([type="radio"]):focus-visible,
+  .field textarea:focus-visible,
+  .field select:focus-visible {
+    border-color: var(--responder-color-focus);
+    outline: 2px solid var(--responder-color-focus);
+    outline-offset: 2px;
+  }
+
+  .field input:disabled,
+  .field textarea:disabled,
+  .field select:disabled {
+    color: var(--responder-color-disabled-text);
+    background: var(--responder-color-disabled-bg);
+    border-style: dashed;
+    cursor: not-allowed;
   }
 
   .field textarea {
@@ -64,8 +81,8 @@
     color: var(--responder-color-text);
 
     input {
-      width: 1.05rem;
-      height: 1.05rem;
+      width: 1.5rem;
+      height: 1.5rem;
       accent-color: var(--responder-color-accent);
     }
   }
