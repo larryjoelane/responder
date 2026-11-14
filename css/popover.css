@@ -1,0 +1,30 @@
+/*
+  Popover panel. The popover attribute and popovertarget on a button
+  open, close, and light-dismiss the panel with no JavaScript.
+
+  Browsers that do not support popover will show the panel in normal
+  flow. <details> is the fallback pattern used by .nav-disclosure
+  and .accordion.
+*/
+
+@layer responder-base, responder-components, responder-utilities;
+
+@layer responder-components {
+  .popover {
+    border: 1px solid var(--responder-color-border);
+    border-radius: var(--responder-radius);
+    padding: var(--responder-space-4);
+    background: var(--responder-color-surface);
+    color: var(--responder-color-text);
+    box-shadow: var(--responder-shadow);
+    max-width: min(22rem, calc(100vw - 2rem));
+
+    > :last-child {
+      margin-bottom: 0;
+    }
+
+    &::backdrop {
+      background: color-mix(in srgb, var(--responder-color-shadow) 35%, transparent);
+    }
+  }
+}

@@ -1,0 +1,52 @@
+/*
+  Buttons, for <button> and <a class="button">.
+*/
+
+@layer responder-base, responder-components, responder-utilities;
+
+@layer responder-components {
+  .button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--responder-space-2);
+    margin: 0;
+    padding: 0.55rem 1rem;
+    border: 1px solid transparent;
+    border-radius: var(--responder-radius);
+    background: var(--responder-color-accent);
+    color: var(--responder-color-accent-contrast);
+    font-size: var(--responder-size-sm);
+    font-weight: 700;
+    line-height: 1.2;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+
+    &:hover {
+      background: var(--responder-color-accent-hover);
+      color: var(--responder-color-accent-contrast);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--responder-color-focus);
+      outline-offset: 2px;
+    }
+  }
+
+  .button-quiet {
+    background: transparent;
+    color: var(--responder-color-accent);
+    border-color: var(--responder-color-border);
+
+    &:hover {
+      background: color-mix(in srgb, var(--responder-color-accent) 12%, var(--responder-color-surface));
+      color: var(--responder-color-accent-hover);
+    }
+  }
+
+  .button-small {
+    padding: 0.3rem 0.7rem;
+    font-size: 0.8125rem;
+  }
+}

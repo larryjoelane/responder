@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Responder</title>
+  <meta name="description" content="Responder is a small CSS library for row and column layouts. One theme file, no build step, no JavaScript.">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/responder.css">
+  <link rel="stylesheet" href="../css/themes/dark.css">
+  <link rel="stylesheet" href="docs.css">
+</head>
+<body class="page">
+  <a class="skip-link" href="#content">Skip to content</a>
+
+  <header class="site-header">
+    <div class="masthead">
+      <a class="brand" href="index.html">Responder</a>
+      <div class="masthead-tools">
+        <fieldset class="theme-switch">
+          <legend class="visually-hidden">Color theme</legend>
+          <input class="visually-hidden" type="radio" name="theme" id="theme-default" checked>
+          <label for="theme-default">Default</label>
+          <input class="visually-hidden" type="radio" name="theme" id="theme-dark">
+          <label for="theme-dark">Dark</label>
+        </fieldset>
+        <details class="nav-disclosure">
+          <summary>Menu</summary>
+          <ul>
+            <li><a href="#start">Start</a></li>
+            <li><a href="#include">Include</a></li>
+            <li><a href="#theme">Theme</a></li>
+            <li><a href="#grid">Grid</a></li>
+            <li><a href="#layout">Layout</a></li>
+            <li><a href="#navigation">Navigation</a></li>
+            <li><a href="#utilities">Utilities</a></li>
+            <li><a href="#media">Images</a></li>
+            <li><a href="#buttons">Buttons</a></li>
+            <li><a href="#cards">Cards</a></li>
+            <li><a href="#accordion">Accordion</a></li>
+            <li><a href="#tabs">Tabs</a></li>
+            <li><a href="#popover">Popover</a></li>
+            <li><a href="#tables">Tables</a></li>
+            <li><a href="#forms">Forms</a></li>
+            <li><a href="#notices">Notices</a></li>
+            <li><a href="#breakpoints">Breakpoints</a></li>
+            <li><a href="#changes">Changes</a></li>
+          </ul>
+        </details>
+      </div>
+    </div>
+  </header>
+
+  <div class="docs-shell page-main" id="content">
+    <nav class="docs-toc" aria-label="On this page">
+      <p class="docs-toc-label">On this page</p>
+      <a href="#start">Start</a>
+      <a href="#include">Include</a>
+      <a href="#theme">Theme</a>
+      <a href="#grid">Grid</a>
+      <a href="#layout">Layout</a>
+      <a href="#navigation">Navigation</a>
+      <a href="#utilities">Utilities</a>
+      <a href="#media">Images</a>
+      <a href="#buttons">Buttons</a>
+      <a href="#cards">Cards</a>
+      <a href="#accordion">Accordion</a>
+      <a href="#tabs">Tabs</a>
+      <a href="#popover">Popover</a>
+      <a href="#tables">Tables</a>
+      <a href="#forms">Forms</a>
+      <a href="#notices">Notices</a>
+      <a href="#breakpoints">Breakpoints</a>
+      <a href="#changes">Changes</a>
+    </nav>
+
+    <main>
+      <header class="hero" id="start">
+        <p class="kicker">CSS layout library</p>
+        <h1>Responder</h1>
+        <p class="lede">Row and column pages, with the colors, type, and spacing kept in one file. Plain CSS. No Sass, no build, no JavaScript.</p>
+        <p>Written by Larry J. Lane. This manual replaces <span class="file-path">respondermanual.html</span>.</p>
+      </header>
+
+      <div class="feature-row">
+        <article class="card">
+          <h2 class="card-title">One theme file</h2>
+          <p>Change <span class="file-path">css/themes/default.css</span> and every component follows. The switch in the header loads the dark theme with a radio button.</p>
+        </article>
+        <article class="card">
+          <h2 class="card-title">Include what you need</h2>
+          <p>Link <span class="file-path">responder.css</span> for everything, or link the theme plus the few component files a page uses.</p>
+        </article>
+        <article class="card">
+          <h2 class="card-title">Same grid idea</h2>
+          <p><span class="file-path">.row</span> and <span class="file-path">.column-50</span> still add up to a full line. Columns stack on a narrow screen.</p>
+        </article>
+      </div>
+
+      <section class="docs-section" id="include">
+        <h2>Include the CSS</h2>
+        <p>The published site is <a href="https://larryjoelane.github.io/responder/">larryjoelane.github.io/responder</a>. Paths below are from your own project, after you copy the <span class="file-path">css</span> folder.</p>
+        <h3>Everything, default theme</h3>
+        <div class="example">
+          <pre class="code"><code>&lt;link rel="stylesheet" href="css/responder.css"&gt;</code></pre>
+        </div>
+        <p><span class="file-path">responder.css</span> is a list of <span class="file-path">@import</span> rules, not a file that was concatenated by a build. One link tag pulls in the theme and every component. The browser then requests each file. That stays in sync with the modules, and it costs extra requests, which HTTP/2 and HTTP/3 handle well. A single physical file would need a build, or a second copy that can drift.</p>
+        <h3>Only the pieces you need</h3>
+        <p>Link the theme first so it can set the cascade layer order. Then base, then any components. Utilities last is a good habit; the layer order already puts them above components.</p>
+        <div class="example">
+          <pre class="code"><code>&lt;link rel="stylesheet" href="css/themes/default.css"&gt;
+&lt;link rel="stylesheet" href="css/base.css"&gt;
+&lt;link rel="stylesheet" href="css/grid.css"&gt;
+&lt;link rel="stylesheet" href="css/layout.css"&gt;
+&lt;link rel="stylesheet" href="css/utilities.css"&gt;</code></pre>
+        </div>
+        <div class="table-wrap">
+          <table class="table">
+            <caption>Files in css/. The root responder.css file only imports css/responder.css, for old link tags.</caption>
+            <thead>
+              <tr>
+                <th scope="col">File</th>
+                <th scope="col">What it is</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><span class="file-path">responder.css</span></td><td>Default theme plus every component</td></tr>
+              <tr><td><span class="file-path">responder-dark.css</span></td><td>Dark theme plus every component</td></tr>
+              <tr><td><span class="file-path">responder-components.css</span></td><td>Every component, no theme</td></tr>
+              <tr><td><span class="file-path">themes/default.css</span></td><td>Default custom properties</td></tr>
+              <tr><td><span class="file-path">themes/dark.css</span></td><td>Dark custom properties</td></tr>
+              <tr><td><span class="file-path">base.css</span></td><td>Box model, type, links, focus</td></tr>
+              <tr><td><span class="file-path">grid.css</span></td><td>Rows and columns</td></tr>
+              <tr><td><span class="file-path">layout.css</span></td><td>Header, footer, wrap, container</td></tr>
+              <tr><td><span class="file-path">nav.css</span></td><td>Horizontal nav, disclosure menu, legacy mobile menu</td></tr>
+              <tr><td><span class="file-path">media.css</span></td><td>Responsive images and figures</td></tr>
+              <tr><td><span class="file-path">button.css</span></td><td>Buttons</td></tr>
+              <tr><td><span class="file-path">card.css</span></td><td>Cards</td></tr>
+              <tr><td><span class="file-path">accordion.css</span></td><td>Details accordion</td></tr>
+              <tr><td><span class="file-path">tabs.css</span></td><td>Radio-button tabs</td></tr>
+              <tr><td><span class="file-path">popover.css</span></td><td>Native popover panel</td></tr>
+              <tr><td><span class="file-path">table.css</span></td><td>Tables</td></tr>
+              <tr><td><span class="file-path">form.css</span></td><td>Form fields</td></tr>
+              <tr><td><span class="file-path">notice.css</span></td><td>Notices</td></tr>
+              <tr><td><span class="file-path">utilities.css</span></td><td>Show, hide, stack, alignment</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="docs-section" id="theme">
+        <h2>Theme</h2>
+        <p>Colors, type, spacing, radii, shadows, content width, header and footer height, column gap, and the breakpoint notes all live in <span class="file-path">css/themes/default.css</span>. Components never hard-code those values. They read <span class="file-path">var(--responder-color-accent)</span> and the other properties.</p>
+        <p>The header control on this page is two radio buttons. <span class="file-path">themes/dark.css</span> applies its properties while <span class="file-path">#theme-dark</span> is checked, using <span class="file-path">:root:has(#theme-dark:checked)</span>. Reloading the page returns to the default, because nothing stores the choice. That would take JavaScript.</p>
+        <p>To make a whole site dark without a switcher, link the dark bundle instead of the default one. <a href="dark.html">This page does that</a>.</p>
+        <div class="example">
+          <pre class="code"><code>&lt;link rel="stylesheet" href="css/responder-dark.css"&gt;</code></pre>
+        </div>
+        <p>A switcher on your own site is the default bundle, plus the dark theme file, plus a radio whose id is exactly <span class="file-path">theme-dark</span>:</p>
+        <div class="example">
+          <pre class="code"><code>&lt;link rel="stylesheet" href="css/responder.css"&gt;
+&lt;link rel="stylesheet" href="css/themes/dark.css"&gt;
+
+&lt;input type="radio" name="theme" id="theme-default" checked&gt;
+&lt;label for="theme-default"&gt;Default&lt;/label&gt;
+&lt;input type="radio" name="theme" id="theme-dark"&gt;
+&lt;label for="theme-dark"&gt;Dark&lt;/label&gt;</code></pre>
+        </div>
+        <p>Loaded by itself, <span class="file-path">dark.css</span> themes the page. Loaded after the default theme, it does not win until that radio is checked. The default rules use <span class="file-path">:root</span>. The dark rules use <span class="file-path">:where(:root)</span>, which loses on purpose, and the <span class="file-path">:has()</span> rule, which wins when the radio is on.</p>
+        <p>The old <span class="file-path">extend-responder.css</span> file was the theme: Georgia, a green page, a black header and footer, teal hovers, and white columns. Those are tokens now. The page background is a calmer sage than <span class="file-path">#99ff99</span>. Set <span class="file-path">--responder-color-bg</span> back to <span class="file-path">#99ff99</span> if you want the original green. White column fills are the <span class="file-path">.card</span> class, not something every column gets.</p>
+      </section>
+
+      <section class="docs-section" id="grid">
+        <h2>Grid</h2>
+        <p>Put column classes on the direct children of <span class="file-path">.row</span>. Percentages are the same set as before: steps of 5 from 5 to 100, plus 1, 8 (one twelfth), 12 (one eighth), 33 (one third), and 66 (two thirds). <span class="file-path">.column-50</span> is the name to write. <span class="file-path">.column50</span> still works.</p>
+        <p>The gap between columns is <span class="file-path">--responder-column-gap</span>. Below 480px the columns become full width, unless the row has <span class="file-path">.row-fixed</span>.</p>
+
+        <h3>Halves</h3>
+        <div class="example">
+          <div class="example-live">
+            <div class="row">
+              <div class="column-50 swatch">column-50</div>
+              <div class="column-50 swatch">column-50</div>
+            </div>
+          </div>
+          <details class="snippet">
+            <summary>Markup</summary>
+            <pre class="code"><code>&lt;div class="row"&gt;
+  &lt;div class="column-50"&gt;column-50&lt;/div&gt;
+  &lt;div class="column-50"&gt;column-50&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+          </details>
+        </div>
+
+        <h3>Thirds, and a third plus two thirds</h3>
+        <div class="example">
+          <div class="example-live stack">
+            <div class="row">
+              <div class="column-33 swatch">column-33</div>
+              <div class="column-33 swatch">column-33</div>
+              <div class="column-33 swatch">column-33</div>
+            </div>
+            <div class="row">
+              <div class="column-33 swatch">column-33</div>
+              <div class="column-66 swatch">column-66</div>
+            </div>
+          </div>
+          <details class="snippet">
+            <summary>Markup</summary>
+            <pre class="code"><code>&lt;div class="row"&gt;
+  &lt;div class="column-33"&gt;column-33&lt;/div&gt;
+  &lt;div class="column-33"&gt;column-33&lt;/div&gt;
+  &lt;div class="column-33"&gt;column-33&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="row"&gt;
+  &lt;div class="column-33"&gt;column-33&lt;/div&gt;
+  &lt;div class="column-66"&gt;column-66&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+          </details>
+        </div>
+
+        <h3>Quarters and a nested row</h3>
+        <div class="example">
+          <div class="example-live stack">
+            <div class="row">
+              <div class="column-25 swatch">25</div>
+              <div class="column-25 swatch">25</div>
+              <div class="column-25 swatch">25</div>
+              <div class="column-25 swatch">25</div>
+            </div>
+            <div class="row">
+              <div class="column-50 swatch">
+                <p>column-50</p>
+                <div class="row">
+                  <div class="column-50 swatch">half of this</div>
+                  <div class="column-50 swatch">half of this</div>
+                </div>
+              </div>
+              <div class="column-50 swatch">column-50</div>
+            </div>
+          </div>
+          <details class="snippet">
+            <summary>Markup</summary>
+            <pre class="code"><code>&lt;div class="row"&gt;
+  &lt;div class="column-25"&gt;25&lt;/div&gt;
+  &lt;div class="column-25"&gt;25&lt;/div&gt;
+  &lt;div class="column-25"&gt;25&lt;/div&gt;
+  &lt;div class="column-25"&gt;25&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="row"&gt;
+  &lt;div class="column-50"&gt;
+    &lt;div class="row"&gt;
+      &lt;div class="column-50"&gt;half of this&lt;/div&gt;
+      &lt;div class="column-50"&gt;half of this&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="column-50"&gt;column-50&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+          </details>
+        </div>
+
+        <h3>Stay in columns on a phone</h3>
+        <div class="example">
+          <div class="example-live">
+            <div class="row row-fixed">
+              <div class="column-50 swatch">row-fixed</div>
+              <div class="column-50 swatch">row-fixed</div>
+            </div>
+            <p class="hint">These two stay side by side under 480px. A row without row-fixed stacks.</p>
+          </div>
+          <details class="snippet">
+            <summary>Markup</summary>
+            <pre class="code"><code>&lt;div class="row row-fixed"&gt;
+  &lt;div class="column-50"&gt;row-fixed&lt;/div&gt;
+  &lt;div class="column-50"&gt;row-fixed&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+          </details>
+        </div>
+
+        <div class="table-wrap">
+          <table class="table">
+            <caption>Column classes. The unhyphenated name is an alias.</caption>
+            <thead>
+              <tr>
+                <th scope="col">Class</th>
+                <th scope="col">Width</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>column-1</td><td>1%</td></tr>
+              <tr><td>column-5 through column-100, step 5</td><td>5% through 100%</td></tr>
+              <tr><td>column-8</td><td>8.333% (1/12)</td></tr>
+              <tr><td>column-12</td><td>12.5% (1/8)</td></tr>
+              <tr><td>column-33</td><td>33.333% (1/3)</td></tr>
+              <tr><td>column-66</td><td>66.667% (2/3)</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="docs-section" id="layout">
+        <h2>Layout</h2>
+        <p>A page is a column: header, growing main area, footer. The footer sits at the bottom of the viewport when the page is short. Use the classes, or the old ids <span class="file-path">#header</span>, <span class="file-path">#wrap</span>, and <span class="file-path">#footer</span>.</p>
+        <p><span class="file-path">.container</span> sets the content measure to <span class="file-path">--responder-content-width</span>. <span class="file-path">#wrap</span> itself stays full width, as it used to. <span class="file-path">.center-vertical</span> centers its contents, and centers itself in the header or footer.</p>
+        <div class="example">
+          <div class="example-live">
+            <div class="mini-page">
+              <div class="site-header">
+                <ul class="nav-horizontal">
+                  <li><a href="#layout">Home</a></li>
+                  <li><a href="#navigation">Events</a></li>
+                  <li><a href="#forms">Contact</a></li>
+                </ul>
+                <details class="nav-disclosure">
+                  <summary>Menu</summary>
+                  <ul>
+                    <li><a href="#layout">Home</a></li>
+                    <li><a href="#navigation">Events</a></li>
+                    <li><a href="#forms">Contact</a></li>
+                  </ul>
+                </details>
+              </div>
+              <div class="mini-page-body">
+                <p>Main content. This region is <span class="file-path">.page-main</span> or <span class="file-path">#wrap</span>.</p>
+              </div>
+              <div class="site-footer">
+                <p class="center-vertical">Footer line, centered.</p>
+              </div>
+            </div>
+            <p class="hint">Inside a header, the horizontal links and the Menu disclosure swap at 768px. Narrow the window to see the menu button.</p>
+          </div>
+          <details class="snippet">
+            <summary>Markup</summary>
+            <pre class="code"><code>&lt;body class="page"&gt;
+  &lt;header class="site-header"&gt;&lt;/header&gt;
+  &lt;main class="page-main"&gt;
+    &lt;div class="container"&gt;...&lt;/div&gt;
+  &lt;/main&gt;
+  &lt;footer class="site-footer"&gt;
+    &lt;p class="center-vertical"&gt;Footer&lt;/p&gt;
+  &lt;/footer&gt;
+&lt;/body&gt;</code></pre>
+          </details>
+        </div>
+      </section>
+
+      <section class="docs-section" id="navigation">
+        <h2>Navigation</h2>
+        <p>Use <span class="file-path">.nav-horizontal</span> for a row of links. For a small screen, use <span class="file-path">.nav-disclosure</span>: a <span class="file-path">details</span> element. It opens from the keyboard and from a tap. The header hides the horizontal list below 768px and hides the disclosure from 768px up.</p>
+        <div class="example">
+          <div class="example-live stack">
+            <ul class="nav-horizontal">
+              <li><a href="#start" aria-current="page">Start</a></li>
+              <li><a href="#grid">Grid</a></li>
+              <li><a href="#theme">Theme</a></li>
+              <li><a href="#changes">Changes</a></li>
+            </ul>
+            <details class="nav-disclosure">
+              <summary>Sections</summary>
+              <ul>
+                <li><a href="#grid">Grid</a></li>
+                <li><a href="#layout">Layout</a></li>
+                <li><a href="#utilities">Utilities</a></li>
+              </ul>
+            </details>
+          </div>
+          <details class="snippet">
+            <summary>Markup</summary>
+            <pre class="code"><code>&lt;ul class="nav-horizontal"&gt;
+  &lt;li&gt;&lt;a href="/" aria-current="page"&gt;Start&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="/grid"&gt;Grid&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;details class="nav-disclosure"&gt;
+  &lt;summary&gt;Sections&lt;/summary&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;a href="/grid"&gt;Grid&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/details&gt;</code></pre>
+          </details>
+        </div>
+        <h3>Legacy mobile menu</h3>
+        <p>The old <span class="file-path">.mobile-menu</span> markup still works. The submenu opens on hover and when focus is inside it. A finger tap is not reliable, so new pages should use the disclosure instead. In the header this menu is shown only below 768px.</p>
+        <div class="example">
+          <div class="example-live">
+            <ul class="mobile-menu">
+              <li>
+                <a href="#navigation">Menu</a>
+                <ul>
+                  <li><a href="#start">Home</a></li>
+                  <li><a href="#forms">Contact</a></li>
+                </ul>
+              </li>
+            </ul>
+            <p class="hint">Hover the word Menu, or tab to it and into the links.</p>
+          </div>
+          <details class="snippet">
+            <summary>Markup</summary>
+            <pre class="code"><code>&lt;ul class="mobile-menu"&gt;
+  &lt;li&gt;
+    &lt;a href="#menu"&gt;Menu&lt;/a&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href="/"&gt;Home&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="/contact"&gt;Contact&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+          </details>
+        </div>
+      </section>
+
+      <section class="docs-section" id="utilities">
+        <h2>Utilities</h2>
+        <p><span class="file-path">.hide</span> removes an element from the layout and from the accessibility tree. The show and hide classes follow the viewport width. Resize the window to see which boxes remain. The note under each box stays visible.</p>
+        <div class="example">
+          <div class="example-live">
+            <div class="row">
+              <div class="column-25">
+                <div class="swatch small-hide">small-hide</div>
+                <p class="hint">Hidden at 480px and below.</p>
+              </div>
+              <div class="column-25">
+                <div class="swatch medium-hide">medium-hide</div>
+                <p class="hint">Hidden from 481px to 768px.</p>
+              </div>
+              <div class="column-25">
+                <div class="swatch large-hide">large-hide</div>
+                <p class="hint">Hidden from 769px to 992px.</p>
+              </div>
+              <div class="column-25">
+                <div class="swatch extra-large-hide">extra-large-hide</div>
+                <p class="hint">Hidden from 993px up.</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="column-50">
+                <div class="swatch small-show">small-show</div>
+                <p class="hint">Shown only at 480px and below. On a wider window this box is gone.</p>
+              </div>
+              <div class="column-50">
+                <div class="swatch extra-large-show">extra-large-show</div>
+                <p class="hint">Shown only from 993px up.</p>
+              </div>
+            </div>
+          </div>
+          <details class="snippet">
+            <summary>Markup</summary>
+            <pre class="code"><code>&lt;div class="small-hide"&gt;Hidden on a phone.&lt;/div&gt;
+&lt;div class="small-show"&gt;Shown only on a phone.&lt;/div&gt;
+&lt;p class="hide"&gt;Gone at every size.&lt;/p&gt;
+&lt;p class="text-center"&gt;Centered text.&lt;/p&gt;
+
+&lt;div class="stack"&gt;
+  &lt;p&gt;First&lt;/p&gt;
+  &lt;p&gt;Second, spaced by the stack.&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+          </details>
+        </div>
+        <p><span class="file-path">.visually-hidden</span> hides something visually and leaves it available to assistive technology. The theme control's legend uses it. <span class="file-path">.text-center</span> and <span class="file-path">.text-end</span> set alignment. <span class="file-path">.stack</span> is a vertical list with <span class="file-path">--responder-space-4</span> between the children.</p>
+        <p class="text-center">This line uses text-center.</p>
+      </section>
+
+      <section class="docs-section" id="media">
+        <h2>Images</h2>
+        <p><span class="file-path">.responsive-image</span> fills the column and keeps its ratio.</p>
+        <div class="example">
+          <div class="example-live">
+            <div class="row">
+              <div class="column-66">
+                <figure class="figure">
+                  <img class="responsive-image" src="assets/sample.svg" width="800" height="420" alt="Abstract columns: a mint circle and four blocks on a sage field.">
+                  <figcaption>A figure with a responsive image inside a column-66.</figcaption>
+                </figure>
+              </div>
+              <div class="column-33 card">
+                <h3 class="card-title">In the column</h3>
+                <p>The image is width 100% of whatever column it sits in. Narrow the window and it scales down, then the columns stack.</p>
+              </div>
+            </div>
+          </div>
+          <details class="snippet">
+            <summary>Markup</summary>
+            <pre class="code"><code>&lt;figure class="figure"&gt;
+  &lt;img class="responsive-image" src="photo.jpg" width="800" height="420" alt="Description"&gt;
+  &lt;figcaption&gt;Caption.&lt;/figcaption&gt;
+&lt;/figure&gt;</code></pre>
+          </details>
+        </div>
+      </section>
+
+      <section class="docs-section" id="buttons">
+        <h2>Buttons</h2>
+        <p>The class works on a <span class="file-path">button</span> or a link. Quiet and small are modifiers.</p>
+        <div class="example">
+          <div class="example-live">
+            <div class="cluster">
+              <button class="button" type="button">Primary</button>
+              <a class="button button-quiet" href="#buttons">Quiet link</a>
+              <button class="button button-small" type="button">Small</button>
+            </div>
+          </div>
+          <details class="snippet">
+            <summary>Markup</summary>
+            <pre class="code"><code>&lt;button class="button" type="button"&gt;Primary&lt;/button&gt;
+&lt;a class="button button-quiet" href="/docs"&gt;Quiet link&lt;/a&gt;
+&lt;button class="button button-small" type="button"&gt;Small&lt;/button&gt;</code></pre>
+          </details>
+        </div>
+      </section>
+
+      <section class="docs-section" id="cards">
+        <h2>Cards</h2>
+        <p>A card is the surface, border, radius, and padding that used to be applied to every column.</p>
+        <div class="example">
+          <div class="example-live">
+            <div class="row">
+              <div class="column-50 card">
+                <h3 class="card-title">Events</h3>
+                <p>Cards stretch to the same height when they share a row.</p>
+              </div>
+              <div class="column-50 card">
+                <h3 class="card-title">Notes</h3>
+                <p>Put the card class on the column, or on a child inside the column.</p>
+                <a class="button" href="#cards">Read more</a>
+              </div>
+            </div>
+          </div>
+          <details class="snippet">
+            <summary>Markup</summary>
+            <pre class="code"><code>&lt;div class="row"&gt;
+  &lt;article class="column-50 card"&gt;
+    &lt;h3 class="card-title"&gt;Events&lt;/h3&gt;
+    &lt;p&gt;Cards stretch to the same height.&lt;/p&gt;
+  &lt;/article&gt;
+&lt;/div&gt;</code></pre>
+          </details>
+        </div>
+      </section>
+
+      <section class="docs-section" id="accordion">
+        <h2>Accordion</h2>
+        <p>The old stylesheet mentioned <span class="file-path">#accordion</span> and never built one. This one is <span class="file-path">details</span> and <span class="file-path">summary</span>. The shared <span class="file-path">name</span> keeps a single panel open.</p>
+        <div class="example">
+          <div class="example-live">
+            <div class="accordion">
+              <details name="manual-accordion" open>
+                <summary>What is a row?</summary>
+                <div class="accordion-panel">
+                  <p>A row lays out its direct children on one line until the window is 480px or narrower. Then they stack.</p>
+                </div>
+              </details>
+              <details name="manual-accordion">
+                <summary>Where do colors live?</summary>
+                <div class="accordion-panel">
+                  <p>In the theme file, as custom properties. Components only refer to those names.</p>
+                </div>
+              </details>
+              <details name="manual-accordion">
+                <summary>Does this need JavaScript?</summary>
+                <div class="accordion-panel">
+                  <p>No. Opening and closing is built into the details element.</p>
+                </div>
+              </details>
+            </div>
+          </div>
+          <details class="snippet">
+            <summary>Markup</summary>
+            <pre class="code"><code>&lt;div class="accordion"&gt;
+  &lt;details name="topics" open&gt;
+    &lt;summary&gt;What is a row?&lt;/summary&gt;
+    &lt;div class="accordion-panel"&gt;
+      &lt;p&gt;A row lays out its direct children.&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/details&gt;
+&lt;/div&gt;</code></pre>
+          </details>
+        </div>
+      </section>
+
+      <section class="docs-section" id="tabs">
+        <h2>Tabs</h2>
+        <p>Each tab is a radio button, its label, and a panel, in that order. Radios in one set share a <span class="file-path">name</span>. Arrow keys move between them the way they do in any radio group.</p>
+        <div class="example">
+          <div class="example-live">
+            <div class="tabs">
+              <input type="radio" name="doc-tabs" id="doc-tab-columns" checked>
+              <label for="doc-tab-columns">Columns</label>
+              <div class="tabs-panel">
+                <p>column-50 and column-50. Or column-33 and column-66. The class number is the percentage, except for the fractional columns 8, 12, 33, and 66.</p>
+              </div>
+              <input type="radio" name="doc-tabs" id="doc-tab-theme">
+              <label for="doc-tab-theme">Theme</label>
+              <div class="tabs-panel">
+                <p>Edit one file of custom properties. Link responder-dark.css, or offer both files and a radio with id theme-dark.</p>
+              </div>
+              <input type="radio" name="doc-tabs" id="doc-tab-files">
+              <label for="doc-tab-files">Files</label>
+              <div class="tabs-panel">
+                <p>Skip the bundle and link themes/default.css, base.css, and the components that page actually uses.</p>
+              </div>
+            </div>
+          </div>
+          <details class="snippet">
+            <summary>Markup</summary>
+            <pre class="code"><code>&lt;div class="tabs"&gt;
+  &lt;input type="radio" name="notes" id="tab-columns" checked&gt;
+  &lt;label for="tab-columns"&gt;Columns&lt;/label&gt;
+  &lt;div class="tabs-panel"&gt;&lt;p&gt;Column copy.&lt;/p&gt;&lt;/div&gt;
+
+  &lt;input type="radio" name="notes" id="tab-theme"&gt;
+  &lt;label for="tab-theme"&gt;Theme&lt;/label&gt;
+  &lt;div class="tabs-panel"&gt;&lt;p&gt;Theme copy.&lt;/p&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+          </details>
+        </div>
+      </section>
+
+      <section class="docs-section" id="popover">
+        <h2>Popover</h2>
+        <p>A button with <span class="file-path">popovertarget</span> toggles a panel that has the <span class="file-path">popover</span> attribute. The panel light-dismisses. No JavaScript. Browsers without popover support show the panel in place.</p>
+        <div class="example">
+          <div class="example-live">
+            <button class="button" type="button" popovertarget="demo-popover">Column widths</button>
+            <div id="demo-popover" class="popover" popover>
+              <h3>Fractional columns</h3>
+              <p>column-8 is one twelfth, column-12 is one eighth, column-33 is one third, and column-66 is two thirds.</p>
+            </div>
+          </div>
+          <details class="snippet">
+            <summary>Markup</summary>
+            <pre class="code"><code>&lt;button class="button" type="button" popovertarget="widths"&gt;Column widths&lt;/button&gt;
+&lt;div id="widths" class="popover" popover&gt;
+  &lt;p&gt;column-33 is one third of the row.&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+          </details>
+        </div>
+      </section>
+
+      <section class="docs-section" id="tables">
+        <h2>Tables</h2>
+        <p>Wrap the table in <span class="file-path">.table-wrap</span> so a narrow screen can scroll it instead of stretching the page. The file list higher up uses the same classes.</p>
+        <div class="example">
+          <div class="example-live">
+            <div class="table-wrap">
+              <table class="table">
+                <caption>Breakpoint names used by the utility classes.</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Width</th>
+                    <th scope="col">Utility</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">Small</th>
+                    <td>480px and below</td>
+                    <td>small-hide, small-show</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Medium</th>
+                    <td>481px to 768px</td>
+                    <td>medium-hide, medium-show</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Large</th>
+                    <td>769px to 992px</td>
+                    <td>large-hide, large-show</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Extra large</th>
+                    <td>993px and up</td>
+                    <td>extra-large-hide, extra-large-show</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <details class="snippet">
+            <summary>Markup</summary>
+            <pre class="code"><code>&lt;div class="table-wrap"&gt;
+  &lt;table class="table"&gt;
+    &lt;caption&gt;Breakpoint names.&lt;/caption&gt;
+    &lt;thead&gt;
+      &lt;tr&gt;&lt;th scope="col"&gt;Name&lt;/th&gt;&lt;th scope="col"&gt;Width&lt;/th&gt;&lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+      &lt;tr&gt;&lt;th scope="row"&gt;Small&lt;/th&gt;&lt;td&gt;480px and below&lt;/td&gt;&lt;/tr&gt;
+    &lt;/tbody&gt;
+  &lt;/table&gt;
+&lt;/div&gt;</code></pre>
+          </details>
+        </div>
+      </section>
+
+      <section class="docs-section" id="forms">
+        <h2>Forms</h2>
+        <p>Labels are visible. The button is <span class="file-path">type="button"</span> so this demo does not navigate away. Point a real form at your own action.</p>
+        <div class="example">
+          <div class="example-live">
+            <form class="form card" action="#forms">
+              <div class="field">
+                <label for="contact-name">Name</label>
+                <input id="contact-name" name="name" type="text" autocomplete="name">
+              </div>
+              <div class="field">
+                <label for="contact-email">Email</label>
+                <input id="contact-email" name="email" type="email" autocomplete="email" aria-describedby="contact-email-hint">
+                <p class="field-hint" id="contact-email-hint">Used only to reply.</p>
+              </div>
+              <div class="field">
+                <label for="contact-topic">Topic</label>
+                <select id="contact-topic" name="topic">
+                  <option>Grid</option>
+                  <option>Theme</option>
+                  <option>Something else</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="contact-message">Message</label>
+                <textarea id="contact-message" name="message"></textarea>
+              </div>
+              <label class="field-check" for="contact-copy">
+                <input id="contact-copy" name="copy" type="checkbox">
+                Send me a copy
+              </label>
+              <div class="cluster">
+                <button class="button" type="button">Send</button>
+                <button class="button button-quiet" type="reset">Reset</button>
+              </div>
+            </form>
+          </div>
+          <details class="snippet">
+            <summary>Markup</summary>
+            <pre class="code"><code>&lt;form class="form" action="/contact" method="post"&gt;
+  &lt;div class="field"&gt;
+    &lt;label for="name"&gt;Name&lt;/label&gt;
+    &lt;input id="name" name="name" type="text" autocomplete="name"&gt;
+  &lt;/div&gt;
+  &lt;button class="button" type="submit"&gt;Send&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+          </details>
+        </div>
+      </section>
+
+      <section class="docs-section" id="notices">
+        <h2>Notices</h2>
+        <div class="example">
+          <div class="example-live stack">
+            <p class="notice">The theme file is the only place to change the accent color.</p>
+            <p class="notice notice-success">Columns that add up to 100 stay on one line above 480px.</p>
+            <p class="notice notice-warning">Media queries repeat the breakpoint pixels. A custom property cannot drive a media query.</p>
+            <p class="notice notice-danger">Do not combine .hide with a show class. .hide wins.</p>
+          </div>
+          <details class="snippet">
+            <summary>Markup</summary>
+            <pre class="code"><code>&lt;p class="notice"&gt;A note.&lt;/p&gt;
+&lt;p class="notice notice-success"&gt;It worked.&lt;/p&gt;
+&lt;p class="notice notice-warning"&gt;Read this.&lt;/p&gt;
+&lt;p class="notice notice-danger"&gt;Something failed.&lt;/p&gt;</code></pre>
+          </details>
+        </div>
+      </section>
+
+      <section class="docs-section" id="breakpoints">
+        <h2>Breakpoints</h2>
+        <p>The theme file records the three widths. Stylesheets repeat the numbers, because <span class="file-path">var()</span> is not valid inside <span class="file-path">@media</span>, and <span class="file-path">@custom-media</span> is not supported in browsers.</p>
+        <ul>
+          <li><span class="file-path">grid.css</span> stacks columns at 480px.</li>
+          <li><span class="file-path">nav.css</span> swaps header navigation at 768px.</li>
+          <li><span class="file-path">utilities.css</span> hides and shows at 480, 768, and 992.</li>
+        </ul>
+        <p>Change a width in the theme token and in those files together. The ranges do not overlap: 480 belongs to small, 768 belongs to medium, 992 belongs to large.</p>
+      </section>
+
+      <section class="docs-section" id="changes">
+        <h2>Changes from the 2014 library</h2>
+        <p>Sass, gulp, <span class="file-path">gulpfile.js</span>, and <span class="file-path">src/sass</span> are gone. What used to live in <span class="file-path">extend-responder.css</span> is the theme file now. The manual is this page.</p>
+        <ul>
+          <li>Write <span class="file-path">.column-50</span>. <span class="file-path">.column50</span> still matches. The old manual's <span class="file-path">id="column100"</span> never matched the CSS; use a class.</li>
+          <li>Only the direct children of a row are columns. Nested divs are not floated.</li>
+          <li>Columns are not automatically white. Add <span class="file-path">.card</span>.</li>
+          <li>Below 480px, columns stack. The separate 320px query did the same thing and was removed. <span class="file-path">.row-fixed</span> opts out.</li>
+          <li>Header and footer heights are tokens. The sticky footer is flexbox, not a negative margin. The body font no longer shrinks between 768px and 992px.</li>
+          <li><span class="file-path">.hide</span> and the breakpoint classes use <span class="file-path">display: none</span>. <span class="file-path">.small-show</span> is visible only on a small screen. Medium, large, and extra-large show classes are new.</li>
+          <li>In the header, horizontal nav and the mobile menu no longer both disappear at exactly 768px. The swap is at 768px.</li>
+          <li>Nav hover no longer uppercases the link.</li>
+          <li>The root <span class="file-path">responder.css</span> imports <span class="file-path">css/responder.css</span>.</li>
+        </ul>
+        <h3>Left out, because it needs JavaScript</h3>
+        <ul>
+          <li>Modal dialogs. <span class="file-path">dialog.showModal()</span>, a focus trap, and a close control that removes the open state need script. Popover covers a light-dismiss panel.</li>
+          <li>Carousels, drag, and anything on a timer.</li>
+          <li>Copy buttons. Code samples are selectable text.</li>
+          <li>Remembering the theme across reloads. Swap <span class="file-path">responder-dark.css</span> in for a permanent dark site.</li>
+          <li>A touch menu that is not <span class="file-path">details</span> or <span class="file-path">popover</span>. The legacy hover menu is still there, and it is not the one to use on a phone.</li>
+        </ul>
+      </section>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <p class="center-vertical">Responder, by Larry J. Lane. Plain CSS, one theme file, no build.</p>
+  </footer>
+</body>
+</html>

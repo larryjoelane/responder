@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Responder dark theme</title>
+  <meta name="description" content="Responder linked with the dark theme file only, to show that swapping one stylesheet swaps the theme.">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/responder-dark.css">
+  <link rel="stylesheet" href="docs.css">
+</head>
+<body class="page">
+  <a class="skip-link" href="#content">Skip to content</a>
+  <header class="site-header">
+    <div class="masthead">
+      <a class="brand" href="dark.html">Responder</a>
+      <div class="masthead-tools">
+        <a class="button button-small" href="index.html">Default theme</a>
+        <details class="nav-disclosure">
+          <summary>Menu</summary>
+          <ul>
+            <li><a href="index.html#start">Manual</a></li>
+            <li><a href="index.html#theme">Theming</a></li>
+            <li><a href="index.html#grid">Grid</a></li>
+          </ul>
+        </details>
+      </div>
+    </div>
+  </header>
+  <main class="page-main" id="content">
+    <div class="container">
+      <header class="hero">
+        <p class="kicker">File swap</p>
+        <h1>Dark theme</h1>
+        <p class="lede">This page links <span class="file-path">css/responder-dark.css</span> and does not link the default theme. Nothing on the page switches tokens. The dark values come from <span class="file-path">css/themes/dark.css</span> alone.</p>
+      </header>
+      <p class="notice">The manual's header control is the other way to reach these colors: link both theme files and check the radio whose id is theme-dark. <a href="index.html#theme">Back to the manual</a>.</p>
+      <div class="row">
+        <div class="column-50 card">
+          <h2 class="card-title">Same components</h2>
+          <p>Grid, cards, buttons, and notices read the custom properties. Replacing the theme file is the whole change.</p>
+          <a class="button" href="index.html">Read the manual</a>
+        </div>
+        <div class="column-50">
+          <div class="row">
+            <div class="column-50 swatch">50</div>
+            <div class="column-50 swatch">50</div>
+            <div class="column-100 swatch">100</div>
+          </div>
+        </div>
+      </div>
+      <p class="notice notice-warning">Breakpoint pixel values are still the ones documented in the theme file. They are not colors, and both themes use the same widths.</p>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <p class="center-vertical">Dark theme file only. <a href="index.html">Default manual</a>.</p>
+  </footer>
+</body>
+</html>

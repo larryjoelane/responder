@@ -1,0 +1,49 @@
+# Publishes the pull request's docs site to the gh-pages branch at
+# pr-preview/pr-<number>/ and comments on the PR with the URL.
+#
+# GitHub Pages must deploy from the gh-pages branch, folder / (root).
+# Settings → Pages → Build and deployment → Source: Deploy from a branch.
+# The "GitHub Actions" Pages source does not work with this action.
+#
+# The workflow token must be allowed to push that branch:
+# Settings → Actions → General → Workflow permissions → Read and write permissions.
+name: Deploy PR preview
+
+on:
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - closed
+
+permissions:
+  contents: write
+  pull-requests: write
+  pages: read
+  deployments: read
+
+concurrency:
+  group: pr-preview-${{ github.event.number }}
+  cancel-in-progress: false
+
+jobs:
+  deploy-preview:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Assemble docs site
+        if: github.event.action != 'closed'
+        run: bash scripts/assemble-pages.sh
+
+      - name: Deploy preview
+        uses: rossjrw/pr-preview-action@v1
+        with:
+          source-dir: ./_site
+          preview-branch: gh-pages
+          umbrella-dir: pr-preview
+          action: auto
+          comment: true
+          wait-for-pages-deployment: true

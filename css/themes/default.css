@@ -1,0 +1,89 @@
+/*
+  Responder default theme.
+
+  This file is the only place visual parameters live: colors, type,
+  spacing, radii, shadows, layout sizes, and the documented breakpoints.
+  Every component reads these custom properties. Swap the theme by
+  replacing this file with another that defines the same names
+  (see themes/dark.css).
+
+  Breakpoint tokens are documentation. CSS media queries cannot read
+  custom properties, and @custom-media is not supported in browsers, so
+  grid.css, nav.css, and utilities.css repeat the same pixel values.
+  Change a breakpoint in all of those places together.
+
+    --responder-bp-sm  480px   phones and below. Columns stack.
+                               .small-hide / .small-show
+    --responder-bp-md  768px   through tablet. .medium-hide / .medium-show
+                               Header nav swaps here.
+    --responder-bp-lg  992px   through this width: .large-hide / .large-show
+                               Wider than this: .extra-large-hide / .extra-large-show
+
+  Layer order is declared in every file so components can be included
+  in any order after, or even before, the theme.
+*/
+
+@layer responder-base, responder-components, responder-utilities;
+
+:root {
+  color-scheme: light;
+
+  --responder-color-bg: #e5f2e1;
+  --responder-color-surface: #ffffff;
+  --responder-color-text: #14261c;
+  --responder-color-muted: #3e5649;
+  --responder-color-heading: #003333;
+  --responder-color-accent: #0c5e59;
+  --responder-color-accent-hover: #094843;
+  --responder-color-accent-contrast: #ffffff;
+  --responder-color-header-bg: #12211b;
+  --responder-color-header-text: #f3faf4;
+  --responder-color-header-hover: #9be7d4;
+  --responder-color-footer-bg: #12211b;
+  --responder-color-footer-text: #f3faf4;
+  --responder-color-border: #c9d8cc;
+  --responder-color-focus: #0c5e59;
+  --responder-color-link: #0c5e59;
+  --responder-color-shadow: #12211b;
+  --responder-color-code-bg: #12211b;
+  --responder-color-code-text: #e7f6ea;
+  --responder-color-warning: #8a4b00;
+  --responder-color-success: #0c5e59;
+  --responder-color-danger: #8f1d2c;
+
+  --responder-font-family: Georgia, "Iowan Old Style", "Palatino Linotype", Palatino, serif;
+  --responder-font-mono: ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, Consolas, monospace;
+  --responder-font-size: 1.0625rem;
+  --responder-line-height: 1.6;
+  --responder-heading-weight: 700;
+  --responder-size-sm: 0.875rem;
+  --responder-size-lg: 1.25rem;
+  --responder-size-xl: 1.75rem;
+  --responder-size-2xl: 2.5rem;
+
+  --responder-space-1: 0.25rem;
+  --responder-space-2: 0.5rem;
+  --responder-space-3: 0.75rem;
+  --responder-space-4: 1rem;
+  --responder-space-5: 1.5rem;
+  --responder-space-6: 2rem;
+  --responder-space-7: 3rem;
+  --responder-space-8: 4.5rem;
+
+  --responder-radius-sm: 0.25rem;
+  --responder-radius: 0.5rem;
+  --responder-radius-lg: 0.75rem;
+  --responder-radius-pill: 999px;
+
+  --responder-shadow-sm: 0 1px 2px color-mix(in srgb, var(--responder-color-shadow) 16%, transparent);
+  --responder-shadow: 0 12px 32px color-mix(in srgb, var(--responder-color-shadow) 14%, transparent);
+
+  --responder-content-width: 72rem;
+  --responder-column-gap: 1rem;
+  --responder-header-block: 4.25rem;
+  --responder-footer-block: 4.25rem;
+
+  --responder-bp-sm: 480px;
+  --responder-bp-md: 768px;
+  --responder-bp-lg: 992px;
+}
