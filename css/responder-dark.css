@@ -1,0 +1,7 @@
+/*
+  Same components as responder.css, with themes/dark.css.
+  Link this file instead of responder.css. Do not link both bundles.
+*/
+
+@import url("themes/dark.css");
+@import url("responder-components.css");
